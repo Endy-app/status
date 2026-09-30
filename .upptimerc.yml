@@ -1,68 +1,31 @@
-# Endy public status page — Upptime (https://upptime.js.org, MIT licence).
-# SOURCE COPY. The live copy is the root .upptimerc.yml of the PUBLIC repo Endy-app/status
-# (created from the upptime/upptime template). Edit here, then copy across.
-#
-# Public repo rule: nothing internal in this file. Probe only public hostnames; the database
-# is reached through auth.endy.app (Supabase custom domain), never the project ref.
-# SUPABASE_ANON_KEY is the public anon/publishable key (already shipped in the web bundle);
-# it lives in the status repo's Actions secrets so it isn't committed.
-owner: Endy-app
-repo: status
-user-agent: Endy-app
+# Change these first
+owner: upptime # Your GitHub organization or username, where this repository lives
+repo: upptime # The name of this repository
 
 sites:
-  - name: Website
-    url: https://endy.app
-    icon: https://endy.app/favicon.svg
-  - name: Endy App
-    url: https://app.endy.app
-    icon: https://endy.app/favicon.svg
-  - name: Sign-In
-    url: https://auth.endy.app/auth/v1/health
-    headers:
-      - "apikey: $SUPABASE_ANON_KEY"
-    icon: https://endy.app/favicon.svg
-  - name: Database And API
-    # The same trivial anon RPC the internal uptime probe uses (scripts/uptime-probe.mjs):
-    # it goes through PostgREST to Postgres, so it fails when the database hangs.
-    url: https://auth.endy.app/rest/v1/rpc/workspace_exists_by_slug
-    method: POST
-    headers:
-      - "apikey: $SUPABASE_ANON_KEY"
-      - "Authorization: Bearer $SUPABASE_ANON_KEY"
-      - "Content-Type: application/json"
-    body: '{"p_slug":"__uptime_probe__"}'
-    maxResponseTime: 10000
-    icon: https://endy.app/favicon.svg
-
-secrets:
-  - SUPABASE_ANON_KEY
-
-# Upptime opens an issue per outage; these people are assigned.
-assignees:
-  - hiwebdivine
-
-workflowSchedule:
-  uptime: "*/5 * * * *"
-  responseTime: "0 23 * * *"
-  graphs: "0 0 * * *"
-  summary: "0 0 * * *"
-  staticSite: "0 1 * * *"
-  updateTemplate: "0 0 * * 0"
-  updates: "0 3 * * *"
+  - name: Google
+    url: https://www.google.com
+  - name: Wikipedia
+    url: https://en.wikipedia.org
+  - name: Hacker News
+    url: https://news.ycombinator.com
+  - name: Secret Site
+    url: $SECRET_SITE
 
 status-website:
-  cname: status.endy.app
-  name: Endy Status
-  logoUrl: https://endy.app/icon-512.png
-  favicon: https://endy.app/favicon.svg
-  theme: dark
-  introTitle: "**Endy** system status"
-  introMessage: Live status of the Endy app, sign-in and database, checked every five minutes from outside Endy. Questions? Email hey@endy.app.
+  # Add your custom domain name, or remove the `cname` line if you don't have a domain
+  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
+  cname: demo.upptime.js.org
+  # baseUrl: /your-repo-name
+  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
+  name: Upptime
+  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
+  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
   navbar:
     - title: Status
       href: /
-    - title: Endy
-      href: https://endy.app
-    - title: Docs
-      href: https://endy.app/docs
+    - title: GitHub
+      href: https://github.com/$OWNER/$REPO
+
+# Upptime also supports notifications, assigning issues, and more
+# See https://upptime.js.org/docs/configuration
